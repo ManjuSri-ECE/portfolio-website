@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manju Sri S – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --cream:#FAF8F4; --white:#FFFFFF; --navy:#0D1B2A;
+      --teal:#1A7A6E; --teal-light:#2BA99A;
+      --text:#1C2B3A; --muted:#6B7B8D; --border:#E2DDD6;
+      --shadow:0 4px 32px rgba(13,27,42,0.08);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,244,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--navy);}
+    .nav-links{display:flex;gap:24px;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--muted);font-size:12.5px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--teal);}
+
+    #hero{min-height:100vh;display:flex;align-items:center;padding:80px 48px 60px;max-width:1200px;margin:0 auto;gap:80px;}
+    .hero-text{flex:1;}
+    .hero-roles{display:flex;align-items:center;font-size:11px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;flex-wrap:wrap;row-gap:6px;}
+    .hero-roles span{opacity:0.4;margin:0 10px;font-size:10px;}
+    .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,6.5vw,88px);font-weight:700;line-height:1.0;color:var(--navy);margin-bottom:22px;}
+    .hero-subtitle{font-size:16px;color:var(--muted);line-height:1.8;max-width:500px;margin-bottom:32px;}
+    .expertise-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+    .expertise-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
+    .chip{display:flex;align-items:center;gap:7px;border:1px solid var(--border);background:var(--white);color:var(--text);font-size:13px;font-weight:500;padding:7px 16px;border-radius:100px;transition:border-color 0.2s,background 0.2s;}
+    .chip:hover{border-color:var(--teal);background:#F0FAF8;}
+    .chip-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+    .dot-teal{background:var(--teal);} .dot-blue{background:#3B82F6;} .dot-gold{background:#C9933A;} .dot-purple{background:#7C3AED;}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+    .btn-primary{background:var(--teal);color:white;padding:13px 28px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:500;transition:background 0.2s,transform 0.15s;display:flex;align-items:center;gap:8px;}
+    .btn-primary:hover{background:var(--teal-light);transform:translateY(-1px);}
+    .btn-outline{border:1.5px solid var(--border);color:var(--text);background:var(--white);padding:13px 28px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:500;transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+    .btn-outline:hover{border-color:var(--teal);color:var(--teal);background:#F0FAF8;}
+    .hero-image{flex-shrink:0;position:relative;}
+    .hero-image::before{content:'';position:absolute;inset:-12px;border:2px solid var(--teal);border-radius:50%;opacity:0.2;}
+    .hero-image img{width:280px;height:280px;border-radius:50%;object-fit:cover;object-position:top;border:4px solid white;box-shadow:var(--shadow),0 0 0 1px var(--border);display:block;}
+
+    section{padding:96px 48px;max-width:1200px;margin:0 auto;}
+    .section-label{font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;}
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,48px);font-weight:700;color:var(--navy);margin-bottom:48px;line-height:1.1;}
+    .divider{width:48px;height:2px;background:var(--teal);margin-bottom:16px;}
+
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+    .about-text p{font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:16px;}
+    .focus-list{margin-top:24px;display:flex;flex-direction:column;gap:12px;}
+    .focus-item{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500;color:var(--text);}
+    .focus-icon{width:36px;height:36px;background:linear-gradient(135deg,#E8F6F4,#C8EAE5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .edu-cards{display:flex;flex-direction:column;gap:16px;}
+    .edu-card{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:20px 24px;border-left:3px solid var(--teal);}
+    .edu-card h4{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+    .edu-card .edu-school{font-size:14px;color:var(--muted);}
+    .edu-card .edu-score{font-size:13px;font-weight:500;color:var(--teal);margin-top:6px;}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+    .skill-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:28px;transition:box-shadow 0.2s,transform 0.2s;}
+    .skill-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
+    .skill-card-icon{font-size:28px;margin-bottom:14px;}
+    .skill-card h4{font-size:14px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+    .tag{background:#F0F7F6;color:var(--text);font-size:13px;padding:4px 12px;border-radius:4px;border:1px solid #DFF0EE;}
+
+    /* PROJECTS */
+    .project-section{background:var(--navy);}
+    .project-section-inner{max-width:1200px;margin:0 auto;padding:96px 48px;}
+    .project-section-inner .section-label{color:var(--teal-light);}
+    .project-section-inner .section-title{color:white;}
+    .project-block{margin-bottom:80px;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;}
+    .project-block:last-child{margin-bottom:0;}
+
+    /* Header: desc + tech stack together */
+    .project-header{padding:40px 48px 36px;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.08);}
+    .project-num{font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-light);margin-bottom:12px;}
+    .project-header h3{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,30px);font-weight:700;color:white;margin-bottom:16px;line-height:1.25;}
+    .project-header p{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.6);max-width:860px;margin-bottom:20px;}
+    /* Tech stack inside header */
+    .tech-stack{display:flex;flex-wrap:wrap;gap:8px;}
+    .tech-tag{background:rgba(26,122,110,0.2);color:var(--teal-light);font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid rgba(26,122,110,0.3);}
+
+    .project-body{padding:36px 48px;}
+    .project-meta{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:36px;}
+    .project-meta-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:18px 20px;}
+    .project-meta-card h5{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-light);margin-bottom:8px;}
+    .project-meta-card p{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.6;}
+
+    .gallery-section{margin-bottom:36px;}
+    .gallery-section-title{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .accuracy-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px;}
+    .acc-badge{background:rgba(43,169,154,0.15);border:1px solid rgba(43,169,154,0.3);border-radius:8px;padding:14px 20px;text-align:center;}
+    .acc-badge .acc-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--teal-light);line-height:1;}
+    .acc-badge .acc-label{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;}
+
+    /* Hardware photos — cover is fine */
+    .hw-grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;}
+    .hw-cell{border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);}
+    .hw-cell img{width:100%;height:300px;object-fit:cover;display:block;}
+
+    /* Dashboard screenshots — cover ok */
+    .dash-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .dash-cell{border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);}
+    .dash-cell img{width:100%;height:220px;object-fit:cover;display:block;}
+
+    /*
+      GRAPH GRIDS — fully uncropped, all same visual size.
+      Key: fixed aspect-ratio container + object-fit:contain.
+      All graph boxes share the same aspect ratio (16/9 for landscape graphs),
+      the image scales down to fit fully inside — no cropping ever.
+    */
+    .graph-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+    .graph-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+
+    .graph-item{display:flex;flex-direction:column;gap:6px;}
+    .graph-box{
+      aspect-ratio:4/3;           /* fixed ratio — same for every cell */
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px;
+      overflow:hidden;
+    }
+    .graph-box img{
+      width:100%;
+      height:100%;
+      object-fit:contain;         /* scale to fit, never crop */
+      display:block;
+    }
+    .gallery-label{font-size:11px;letter-spacing:0.06em;color:rgba(255,255,255,0.35);text-align:center;}
+
+    /* INTERNSHIP */
+    .timeline{display:flex;flex-direction:column;position:relative;padding-left:32px;}
+    .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--teal),transparent);}
+    .timeline-item{position:relative;padding-bottom:48px;}
+    .timeline-item:last-child{padding-bottom:0;}
+    .timeline-item::before{content:'';position:absolute;left:-36px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--teal);border:2px solid var(--white);box-shadow:0 0 0 2px var(--teal);}
+    .timeline-meta{font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+    .timeline-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--navy);margin-bottom:8px;}
+    .timeline-desc{font-size:14px;line-height:1.75;color:var(--muted);margin-bottom:14px;}
+    .timeline-bullets{list-style:none;margin-bottom:16px;display:flex;flex-direction:column;gap:6px;}
+    .timeline-bullets li{font-size:14px;color:var(--muted);padding-left:16px;position:relative;line-height:1.6;}
+    .timeline-bullets li::before{content:'→';position:absolute;left:0;color:var(--teal);font-size:12px;top:2px;}
+    .intern-cert{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:#F7FBF9;color:var(--teal);font-size:13px;font-weight:500;padding:7px 14px;border-radius:6px;cursor:pointer;transition:background 0.2s,border-color 0.2s;margin-top:4px;}
+    .intern-cert:hover{background:#E8F6F4;border-color:var(--teal);}
+
+    /* RESEARCH */
+    .pub-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px 36px;border-left:4px solid var(--teal);}
+    .pub-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:16px;}
+    .pub-badge{flex-shrink:0;background:linear-gradient(135deg,#E8F6F4,#C8EAE5);border:1px solid #A8DDD8;border-radius:8px;padding:8px 14px;text-align:center;}
+    .pub-badge-org{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);}
+    .pub-badge-year{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.1;}
+    .pub-meta{flex:1;}
+    .pub-type{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+    .pub-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:10px;}
+    .pub-conference{font-size:13px;color:var(--muted);}
+    .abstract-toggle{display:inline-flex;align-items:center;gap:7px;margin-top:16px;background:none;border:1.5px solid var(--teal);color:var(--teal);font-size:13px;font-weight:500;padding:7px 16px;border-radius:6px;cursor:pointer;transition:background 0.2s,color 0.2s;font-family:'DM Sans',sans-serif;}
+    .abstract-toggle:hover{background:var(--teal);color:white;}
+    .abstract-toggle svg{transition:transform 0.3s;}
+    .abstract-toggle.open svg{transform:rotate(180deg);}
+    .abstract-body{display:none;margin-top:20px;background:#F7FBF9;border:1px solid #D5EDE9;border-radius:8px;padding:24px 28px;}
+    .abstract-body.open{display:block;}
+    .abstract-body p{font-size:14px;line-height:1.85;color:var(--text);}
+    .abstract-kw-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;margin-top:16px;}
+    .pub-keywords{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+    .pub-kw{background:#F5F3EF;color:var(--muted);font-size:12px;padding:3px 10px;border-radius:4px;border:1px solid var(--border);}
+
+    /* CERTIFICATIONS */
+    .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .cert-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow 0.25s,transform 0.2s;cursor:pointer;display:flex;flex-direction:column;}
+    .cert-card:hover{box-shadow:0 8px 40px rgba(13,27,42,0.12);transform:translateY(-3px);}
+    .cert-preview{width:100%;height:180px;overflow:hidden;background:#f5f5f5;border-bottom:1px solid var(--border);}
+    .cert-preview img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 0.4s ease;}
+    .cert-card:hover .cert-preview img{transform:scale(1.03);}
+    .cert-info{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+    .cert-platform{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;}
+    .cert-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--navy);line-height:1.35;margin-bottom:8px;}
+    .cert-date{font-size:12px;color:var(--muted);}
+
+    /* HIGHLIGHTS */
+    .award-row{margin-bottom:56px;}
+    .award-images{display:flex;gap:16px;justify-content:center;margin-bottom:20px;}
+    .award-images img{height:320px;width:auto;max-width:48%;object-fit:contain;border-radius:10px;border:1px solid var(--border);background:#f9f9f9;}
+    .award-desc{background:linear-gradient(135deg,#FFF8E6,#FDEFC8);border:1px solid #F5D97A;border-radius:12px;padding:22px 28px;}
+    .award-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.6);border:1px solid #E8C84A;color:#7A5500;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    .award-desc h4{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+    .award-desc p{font-size:14px;color:var(--text);line-height:1.7;}
+    .workshops-label{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;}
+    .workshop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .workshop-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;cursor:pointer;}
+    .workshop-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
+    .workshop-preview{height:160px;overflow:hidden;background:#f5f5f5;border-bottom:1px solid var(--border);}
+    .workshop-preview img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 0.4s;}
+    .workshop-card:hover .workshop-preview img{transform:scale(1.04);}
+    .workshop-info{padding:14px 16px 16px;}
+    .workshop-org{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+    .workshop-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:4px;}
+    .workshop-date{font-size:12px;color:var(--muted);}
+
+    .lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;padding:24px;}
+    .lightbox.open{display:flex;}
+    .lightbox-inner{position:relative;max-width:900px;width:100%;}
+    .lightbox-inner img{width:100%;border-radius:10px;display:block;box-shadow:0 20px 80px rgba(0,0,0,0.5);}
+    .lightbox-close{position:absolute;top:-16px;right:-16px;width:36px;height:36px;border-radius:50%;background:white;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.3);color:var(--navy);}
+
+    .contact-section{background:var(--navy);}
+    .contact-inner{max-width:1200px;margin:0 auto;padding:96px 48px;text-align:center;}
+    .contact-inner .section-label{color:var(--teal-light);}
+    .contact-inner .section-title{color:white;margin-bottom:16px;}
+    .contact-inner p{color:rgba(255,255,255,0.55);font-size:16px;max-width:480px;margin:0 auto 48px;line-height:1.7;}
+    .contact-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
+    .contact-link{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:white;text-decoration:none;padding:14px 28px;border-radius:6px;font-size:14px;font-weight:500;transition:background 0.2s,border-color 0.2s;}
+    .contact-link:hover{background:rgba(26,122,110,0.25);border-color:var(--teal-light);}
+    footer{background:#070E16;text-align:center;padding:24px;font-size:13px;color:rgba(255,255,255,0.25);}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .fade-up{opacity:0;animation:fadeUp 0.7s ease forwards;}
+    .fade-up.d1{animation-delay:0.1s;} .fade-up.d2{animation-delay:0.25s;}
+    .fade-up.d3{animation-delay:0.38s;} .fade-up.d4{animation-delay:0.50s;} .fade-up.d5{animation-delay:0.62s;}
+
+    @media(max-width:900px){
+      nav{padding:0 20px;} .nav-links{display:none;}
+      #hero{flex-direction:column-reverse;padding:100px 20px 48px;gap:40px;text-align:center;}
+      .hero-roles,.expertise-chips,.hero-cta{justify-content:center;}
+      .hero-image img{width:200px;height:200px;}
+      section{padding:64px 20px;}
+      .about-grid{grid-template-columns:1fr;gap:32px;}
+      .pub-header{flex-direction:column;gap:12px;}
+      .project-header,.project-body{padding:24px 20px;}
+      .graph-grid-3,.graph-grid-2,.dash-grid-2,.hw-grid-2,.cert-grid,.workshop-grid{grid-template-columns:1fr;}
+      .project-section-inner,.contact-inner{padding:64px 20px;}
+      .award-images{flex-direction:column;align-items:center;}
+      .award-images img{max-width:90%;height:auto;}
+    }
+  </style>
+</head>
+<body>
+<nav>
+<div class="nav-logo">Manju Sri S</div>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#publications">Research</a></li>
+<li><a href="#certifications">Certifications</a></li>
+<li><a href="#highlights">Highlights</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+<!-- HERO -->
+<div style="background:var(--cream);">
+<div id="hero">
+<div class="hero-text">
+<div class="hero-roles fade-up d1">EMBEDDED SYSTEMS ENGINEER<span>•</span>AI RESEARCH ENTHUSIAST<span>•</span>IoT DEVELOPER</div>
+<h1 class="hero-name fade-up d2">Manju Sri S</h1>
+<p class="hero-subtitle fade-up d3">Electronics &amp; Communication Engineer with research interests in Embedded Systems, IoT, and the application of AI/ML to intelligent hardware systems. Focused on developing solutions at the boundary of edge computing, sensor intelligence, and real-time control.</p>
+<div class="fade-up d4">
+<div class="expertise-label">Core Expertise</div>
+<div class="expertise-chips">
+<div class="chip"><div class="chip-dot dot-teal"></div>Embedded C / C++</div>
+<div class="chip"><div class="chip-dot dot-teal"></div>ESP32 / STM32</div>
+<div class="chip"><div class="chip-dot dot-blue"></div>FreeRTOS</div>
+<div class="chip"><div class="chip-dot dot-blue"></div>UART · SPI · I2C · CAN</div>
+<div class="chip"><div class="chip-dot dot-teal"></div>IoT &amp; MQTT</div>
+<div class="chip"><div class="chip-dot dot-purple"></div>Machine Learning</div>
+<div class="chip"><div class="chip-dot dot-purple"></div>Time-Series Forecasting</div>
+<div class="chip"><div class="chip-dot dot-gold"></div>PCB Design</div>
+<div class="chip"><div class="chip-dot dot-gold"></div>Sensor Integration</div>
+</div>
+</div>
+<div class="hero-cta fade-up d5">
+<a class="btn-primary" href="#contact"><svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>Get in Touch</a>
+<a class="btn-outline" href="https://www.linkedin.com/in/manju-sri-400556276/" rel="noopener" target="_blank"><svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>LinkedIn ↗</a>
+<a class="btn-outline" href="#projects"><svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M19 11H5m14 0l-7 7m7-7l-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>View Projects</a>
+</div>
+</div>
+<div class="hero-image"><img alt="Manju Sri S" src="assets/images/profile/profile.png"/></div>
+</div>
+</div>
+<!-- ABOUT -->
+<div id="about" style="background:var(--white);">
+<section>
+<div class="divider"></div>
+<div class="section-label">About Me</div>
+<h2 class="section-title">Engineer. Researcher. Builder.</h2>
+<div class="about-grid">
+<div class="about-text">
+<p>I'm a final-year Electronics and Communication Engineering student at Sri Eshwar College of Engineering, with a strong foundation in Embedded Systems, IoT, Artificial Intelligence, and Machine Learning.</p>
+<p>My work spans microcontroller programming, sensor integration, and the design of intelligent monitoring systems — with a consistent focus on bridging the gap between low-level hardware and high-level intelligence.</p>
+<p>I am eager to deepen my expertise at the intersection of Intelligent Embedded Systems, Edge AI &amp; TinyML, and Sustainable Energy Technologies — areas where hardware constraints and algorithmic innovation converge.</p>
+<div class="focus-list">
+<div class="focus-item"><div class="focus-icon">🤖</div>Intelligent Embedded Systems</div>
+<div class="focus-item"><div class="focus-icon">⚡</div>Edge AI &amp; TinyML</div>
+<div class="focus-item"><div class="focus-icon">🌱</div>Sustainable Energy Technologies</div>
+</div>
+</div>
+<div>
+<div class="section-label" style="margin-bottom:20px;">Education</div>
+<div class="edu-cards">
+<div class="edu-card"><h4>B.E. Electronics &amp; Communication Engineering</h4><div class="edu-school">Sri Eshwar College of Engineering  ·  2023–2027</div><div class="edu-score">CGPA: 8.3</div></div>
+<div class="edu-card"><h4>Higher Secondary Certificate (HSC)</h4><div class="edu-school">Barathi Vidya Bavan Higher Secondary School  ·  2022–2023</div><div class="edu-score">92%</div></div>
+<div class="edu-card"><h4>Secondary School Leaving Certificate (SSLC)</h4><div class="edu-school">Vighneshwar Vidhya Mandhir  ·  2020–2021</div><div class="edu-score">Pass</div></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- SKILLS -->
+<section id="skills">
+<div class="divider"></div>
+<div class="section-label">Technical Expertise</div>
+<h2 class="section-title">Skills &amp; Technologies</h2>
+<div class="skills-grid">
+<div class="skill-card"><div class="skill-card-icon">💻</div><h4>Programming</h4><div class="skill-tags"><span class="tag">C</span><span class="tag">C++</span><span class="tag">Embedded C</span><span class="tag">Python</span><span class="tag">ALP</span></div></div>
+<div class="skill-card"><div class="skill-card-icon">🔧</div><h4>Microcontrollers</h4><div class="skill-tags"><span class="tag">Intel 8051</span><span class="tag">ESP32</span><span class="tag">STM32</span></div></div>
+<div class="skill-card"><div class="skill-card-icon">📡</div><h4>Protocols</h4><div class="skill-tags"><span class="tag">UART</span><span class="tag">I2C</span><span class="tag">SPI</span><span class="tag">CAN</span><span class="tag">MQTT</span></div></div>
+<div class="skill-card"><div class="skill-card-icon">📶</div><h4>Wireless Technology</h4><div class="skill-tags"><span class="tag">BLE</span><span class="tag">WiFi</span><span class="tag">Zigbee</span></div></div>
+<div class="skill-card"><div class="skill-card-icon">🛠️</div><h4>Tools &amp; IDEs</h4><div class="skill-tags"><span class="tag">Keil</span><span class="tag">STM32CubeIDE</span><span class="tag">Arduino IDE</span><span class="tag">Matlab</span><span class="tag">VS Code</span><span class="tag">GitHub</span></div></div>
+<div class="skill-card"><div class="skill-card-icon">⚙️</div><h4>Hardware &amp; OS</h4><div class="skill-tags"><span class="tag">PCB Design</span><span class="tag">ADC/DAC</span><span class="tag">FreeRTOS</span><span class="tag">Linux</span></div></div>
+</div>
+</section>
+<!-- PROJECTS -->
+<div class="project-section" id="projects">
+<div class="project-section-inner">
+<div class="divider" style="background:var(--teal-light);"></div>
+<div class="section-label">Featured Work</div>
+<h2 class="section-title">Projects</h2>
+<!-- PROJECT 1 -->
+<div class="project-block">
+<!-- Header: title + description + tech stack -->
+<div class="project-header">
+<div class="project-num">Project 01  ·  Embedded Systems + Machine Learning</div>
+<h3>Predictive Analytics &amp; AI-Optimized Battery Management System for Electric Vehicles</h3>
+<p>Designed and implemented a full-stack IoT-enabled Battery Management System (BMS) targeting electric vehicle applications. The system integrates real-time hardware sensing with cloud-connected machine learning to monitor, predict, and optimise battery performance — achieving near-perfect predictive accuracy across all key battery parameters.</p>
+<div class="tech-stack">
+<span class="tech-tag">ESP32 / NodeMCU</span><span class="tech-tag">Random Forest (ML)</span><span class="tech-tag">SOC/SOH Estimation</span><span class="tech-tag">MQTT</span><span class="tech-tag">Arduino IDE</span><span class="tech-tag">I2C OLED</span><span class="tech-tag">ADC Sensor Integration</span><span class="tech-tag">Python (scikit-learn)</span>
+</div>
+</div>
+<!-- Body: detailed cards + results -->
+<div class="project-body">
+<div class="project-meta">
+<div class="project-meta-card"><h5>🎯 Objective</h5><p>Develop a scalable, intelligent BMS capable of real-time SOC and SOH estimation to extend EV battery life and prevent thermal runaway.</p></div>
+<div class="project-meta-card"><h5>🔬 ML Model</h5><p>Random Forest Regressor trained on multi-sensor time-series data. Independently predicts State of Charge (SoC), Battery Voltage, and Battery Temperature.</p></div>
+<div class="project-meta-card"><h5>📡 Hardware</h5><p>NodeMCU ESP32 as central controller, MH-Electronic voltage sensor for real-time ADC readings, and a 0.96" I2C OLED for on-device status display.</p></div>
+<div class="project-meta-card"><h5>☁️ Connectivity</h5><p>MQTT protocol for lightweight cloud telemetry. Live sensor data streamed to cloud dashboard for remote monitoring and predictive analytics.</p></div>
+</div>
+<div class="gallery-section">
+<div class="gallery-section-title">Hardware Prototype</div>
+<div class="hw-grid-2">
+<div class="hw-cell"><img alt="EV BMS Hardware" src="assets/images/projects/ev-bms/hardware.jpg"/></div>
+<div class="hw-cell"><img alt="OLED Display" src="assets/images/projects/ev-bms/oled-display.jpg"/></div>
+</div>
+<div style="display:flex;gap:12px;margin-top:6px;">
+<div class="gallery-label" style="flex:1.4;">NodeMCU ESP32 + Voltage Sensor + OLED Display</div>
+<div class="gallery-label" style="flex:1;">OLED: Live voltage &amp; charging status</div>
+</div>
+</div>
+<div class="gallery-section">
+<div class="gallery-section-title">ML Prediction Results</div>
+<div class="accuracy-row">
+<div class="acc-badge"><div class="acc-num">99.96%</div><div class="acc-label">SoC Prediction</div></div>
+<div class="acc-badge"><div class="acc-num">99.92%</div><div class="acc-label">Battery Voltage</div></div>
+<div class="acc-badge"><div class="acc-num">99.54%</div><div class="acc-label">Temperature</div></div>
+</div>
+<!-- 3 graphs, same aspect-ratio box, fully uncropped -->
+<div class="graph-grid-3">
+<div class="graph-item">
+<div class="graph-box"><img alt="SoC" src="assets/images/projects/ev-bms/soc.jpg"/></div>
+<div class="gallery-label">SoC — 99.96%</div>
+</div>
+<div class="graph-item">
+<div class="graph-box"><img alt="Temperature" src="assets/images/projects/ev-bms/temperature.jpg"/></div>
+<div class="gallery-label">Temperature — 99.54%</div>
+</div>
+<div class="graph-item">
+<div class="graph-box"><img alt="Voltage" src="assets/images/projects/ev-bms/voltage.jpg"/></div>
+<div class="gallery-label">Voltage — 99.92%</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PROJECT 2 -->
+<div class="project-block">
+<!-- Header: title + description + tech stack -->
+<div class="project-header">
+<div class="project-num">Project 02  ·  AI / IoT / Time-Series Forecasting</div>
+<h3>AI-Enabled Agro-Climate Intelligence &amp; Adaptive Farm Decision Support System</h3>
+<p>Developed a comprehensive smart agriculture platform fusing real-time IoT sensor data with state-of-the-art deep learning to forecast crop yield and environmental parameters. The Temporal Fusion Transformer (TFT) — benchmarked against CNN, GRU, LSTM, and Bi-LSTM — achieved 96.8% accuracy with R² scores up to 0.983.</p>
+<div class="tech-stack">
+<span class="tech-tag">Temporal Fusion Transformer</span><span class="tech-tag">ESP32</span><span class="tech-tag">DHT22 / Soil Moisture Sensor</span><span class="tech-tag">Firebase RTDB</span><span class="tech-tag">React (Dashboard)</span><span class="tech-tag">Python (PyTorch)</span><span class="tech-tag">Time-Series Forecasting</span><span class="tech-tag">3D Printed Enclosure</span>
+</div>
+</div>
+<!-- Body: detailed cards + results -->
+<div class="project-body">
+<div class="project-meta">
+<div class="project-meta-card"><h5>🎯 Objective</h5><p>End-to-end precision agriculture system enabling data-driven decisions on irrigation, crop selection, and yield optimisation using AI forecasting.</p></div>
+<div class="project-meta-card"><h5>🧠 AI Model — TFT</h5><p>Temporal Fusion Transformer outperformed all baselines with multi-horizon forecasting, interpretable feature attention, and variable selection networks.</p></div>
+<div class="project-meta-card"><h5>📡 Hardware</h5><p>ESP32 with DHT22 and capacitive soil moisture sensor in a 3D-printed enclosure. OLED shows live AgriSense AI readings synced to Firebase RTDB.</p></div>
+<div class="project-meta-card"><h5>📊 Dashboard</h5><p>React-based AgriSense AI platform with live sensor monitoring, TFT inference, yield prediction trend, 5-day weather integration, and scenario-based decision support.</p></div>
+</div>
+<div class="gallery-section">
+<div class="gallery-section-title">Hardware Prototype</div>
+<div style="max-width:400px;">
+<div class="hw-cell" style="border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);">
+<img alt="AgriSense" src="assets/images/projects/crop-yield/agrisense.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
+</div>
+</div>
+<div class="gallery-label" style="text-align:left;margin-top:6px;max-width:400px;">3D-printed enclosure — ESP32, DHT22, Soil Moisture Sensor &amp; OLED</div>
+</div>
+<div class="gallery-section">
+<div class="gallery-section-title">AgriSense AI Dashboard</div>
+<div class="dash-grid-2">
+<div>
+<div class="dash-cell"><img alt="Dashboard" src="assets/images/projects/crop-yield/dashboard.jpg"/></div>
+<div class="gallery-label" style="margin-top:6px;">Live Dashboard — 2799 kg/ha · 84.8% confidence</div>
+</div>
+<div>
+<div class="dash-cell"><img alt="Predictions" src="assets/images/projects/crop-yield/predictions.jpg"/></div>
+<div class="gallery-label" style="margin-top:6px;">Predictions Panel — Input controls &amp; yield trend</div>
+</div>
+</div>
+</div>
+<div class="gallery-section">
+<div class="gallery-section-title">TFT Model Performance — 5-Model Benchmark</div>
+<div class="accuracy-row">
+<div class="acc-badge"><div class="acc-num">96.8%</div><div class="acc-label">Temperature</div></div>
+<div class="acc-badge"><div class="acc-num">96.8%</div><div class="acc-label">Rainfall</div></div>
+<div class="acc-badge"><div class="acc-num">96.8%</div><div class="acc-label">Humidity</div></div>
+<div class="acc-badge"><div class="acc-num">96.8%</div><div class="acc-label">Soil pH</div></div>
+<div class="acc-badge"><div class="acc-num">0.983</div><div class="acc-label">R² (Rainfall)</div></div>
+<div class="acc-badge"><div class="acc-num">0.979</div><div class="acc-label">R² (Humidity)</div></div>
+<div class="acc-badge"><div class="acc-num">0.977</div><div class="acc-label">R² (Soil pH)</div></div>
+<div class="acc-badge"><div class="acc-num">0.972</div><div class="acc-label">R² (Temperature)</div></div>
+</div>
+<!-- 2×2 uniform-size, fully uncropped TFT graphs -->
+<div class="graph-grid-2">
+<div class="graph-item">
+<div class="graph-box"><img alt="Temperature TFT" src="assets/images/projects/crop-yield/temperature-tft.jpg"/></div>
+<div class="gallery-label">Temperature — TFT: 96.8% · R²: 0.972</div>
+</div>
+<div class="graph-item">
+<div class="graph-box"><img alt="Rainfall TFT" src="assets/images/projects/crop-yield/rainfall-tft.jpg"/></div>
+<div class="gallery-label">Rainfall — TFT: 96.8% · R²: 0.983</div>
+</div>
+<div class="graph-item">
+<div class="graph-box"><img alt="Humidity TFT" src="assets/images/projects/crop-yield/humidity-tft.jpg"/></div>
+<div class="gallery-label">Humidity — TFT: 96.8% · R²: 0.979</div>
+</div>
+<div class="graph-item">
+<div class="graph-box"><img alt="Soil pH TFT" src="assets/images/projects/crop-yield/soil-ph-tft.jpg"/></div>
+<div class="gallery-label">Soil pH — TFT: 96.8% · R²: 0.977</div>
+</div>
+</div>
+</div>
+<div class="gallery-section">
+<div class="gallery-section-title">Yield Analysis &amp; Feature Importance</div>
+<!-- Same graph-grid-2 so these also match the TFT graphs in size -->
+<div class="graph-grid-2">
+<div class="graph-item">
+<div class="graph-box"><img alt="Yield vs Time" src="assets/images/projects/crop-yield/yield-vs-time.jpg"/></div>
+<div class="gallery-label">Crop Yield vs Time (kg/ha)</div>
+</div>
+<div class="graph-item">
+<div class="graph-box"><img alt="Feature Importance" src="assets/images/projects/crop-yield/feature-importance.jpg"/></div>
+<div class="gallery-label">TFT Feature Importance</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- EXPERIENCE -->
+<section id="experience">
+<div class="divider"></div>
+<div class="section-label">Professional Experience</div>
+<h2 class="section-title">Internships</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-meta">Jul–Aug 2025  ·  1 Month  ·  Chennai, India</div>
+<div class="timeline-title">Research Intern — CSIR–Central Scientific Instruments Organisation (CSIO)</div>
+<p class="timeline-desc">Completed a one-month research internship at CSIR-CSIO Chennai Centre, a premier national R&amp;D laboratory under the Council of Scientific and Industrial Research (CSIR), Government of India. Gained hands-on exposure to advanced R&amp;D facilities and real-world laboratory practices in embedded systems and instrumentation.</p>
+<ul class="timeline-bullets">
+<li>Applied core electronics principles in real-time sensor integration and hardware deployment for embedded IoT systems</li>
+<li>Gained exposure to scientific instrumentation design and measurement systems in a national research environment</li>
+<li>Collaborated with scientists and engineers on live R&amp;D projects, developing understanding of calibration and data acquisition</li>
+</ul>
+<div class="intern-cert" onclick="openLightbox('lb-csio')">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        View Internship Certificate
+      </div>
+</div>
+<div class="timeline-item">
+<div class="timeline-meta">2025  ·  ARTIWIZ Technologies</div>
+<div class="timeline-title">Embedded Systems &amp; IoT Intern</div>
+<p class="timeline-desc">Industry internship focusing on real-time embedded firmware development across two major microcontroller platforms.</p>
+<ul class="timeline-bullets">
+<li>Developed firmware on Intel 8051 using Bare Metal C — GPIO, timers, interrupts, and serial communication</li>
+<li>Programmed STM32F407VGT6 using HAL and FreeRTOS — multi-task scheduling, inter-task communication, peripheral drivers</li>
+<li>Applied UART, I2C, and SPI protocols in hardware integration and debugging tasks</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- RESEARCH PUBLICATIONS -->
+<div id="publications" style="background:var(--white);">
+<section>
+<div class="divider"></div>
+<div class="section-label">Scholarly Work</div>
+<h2 class="section-title">Research Publications</h2>
+<div class="pub-card">
+<div class="pub-header">
+<div class="pub-badge"><div class="pub-badge-org">IEEE</div><div class="pub-badge-year">2026</div></div>
+<div class="pub-meta">
+<div class="pub-type">Conference Paper  ·  IEEE – ICEESI 2026</div>
+<div class="pub-title">A Scalable and Intelligent Approach to Optimising Electric Vehicle Charging Infrastructure</div>
+<div class="pub-conference">International Conference on Electrical and Electronics for Sustainable Innovations (ICEESI 2026)</div>
+</div>
+</div>
+<button class="abstract-toggle" id="toggle-pub1" onclick="toggleAbstract('pub1')">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="14"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        Show Abstract
+      </button>
+<div class="abstract-body" id="abs-pub1">
+<p>Abstract— The long charging time, poor distribution of the charging stations, and high cost of installations are some of the factors that continue to discourage the mainstream adoption of electric vehicles (EVs) within rural and semi-urban locations. To address these limitations, we require a scalable and agile charging environment that would not be bound by the constraints of the fixed stations and the grids. This paper proposes a model that comprises a 15 kW mobile DC fastcharging unit, an automated battery-swapping station and IoTbased real-time monitoring to increase accessibility and reduce user downtime. The system architecture comprises a 72 V, 120 Ah on-board energy module, cloud-connected sensors used to check battery health and an AI-based demand prediction model, which is trained using random forest regression to optimize the use of the chargers. The charging characteristics, battery behavior and demand patterns were simulated to evaluate the system efficiency and operational feasibility. The results suggest that the proposed hybrid charging-swapping model reduces waiting time, improves resource utilisation, and offers better scalability compared to conventional fixed charging stations.</p>
+<div class="abstract-kw-label">Keywords</div>
+<div class="pub-keywords">
+<span class="pub-kw">Electric Vehicles (EVs)</span><span class="pub-kw">Mobile Charging Network</span><span class="pub-kw">Battery-Swapping Stations</span><span class="pub-kw">AI-driven Demand Prediction</span><span class="pub-kw">Renewable Energy Integration</span><span class="pub-kw">Edge Computing</span><span class="pub-kw">Battery Management System (BMS)</span><span class="pub-kw">IoT Sensors</span><span class="pub-kw">Charging Infrastructure</span><span class="pub-kw">Real-time Monitoring</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- CERTIFICATIONS -->
+<div id="certifications" style="background:var(--cream);">
+<section>
+<div class="divider"></div>
+<div class="section-label">Credentials</div>
+<h2 class="section-title">Certifications</h2>
+<div class="cert-grid">
+<div class="cert-card" onclick="openLightbox('lb-udemy')"><div class="cert-preview"><img alt="Udemy DSA" src="assets/images/certifications/udemy-dsa.jpg"/></div><div class="cert-info"><div><div class="cert-platform">Udemy</div><div class="cert-name">Mastering Data Structures &amp; Algorithms using C and C++</div></div><div class="cert-date">April 2024</div></div></div>
+<div class="cert-card" onclick="openLightbox('lb-nptel')"><div class="cert-preview"><img alt="NPTEL" src="assets/images/certifications/nptel.jpg"/></div><div class="cert-info"><div><div class="cert-platform">NPTEL · IIT Madras</div><div class="cert-name">C Programming and Assembly Language</div></div><div class="cert-date">Jul–Aug 2025</div></div></div>
+<div class="cert-card" onclick="openLightbox('lb-microchip')"><div class="cert-preview"><img alt="Microchip FreeRTOS" src="assets/images/certifications/microchip-freertos.jpg"/></div><div class="cert-info"><div><div class="cert-platform">Microchip University</div><div class="cert-name">FreeRTOS Simplified: Develop and Debug FreeRTOS Applications</div></div><div class="cert-date">October 2025</div></div></div>
+<div class="cert-card" onclick="openLightbox('lb-cyber')"><div class="cert-preview"><img alt="Cyber Security" src="assets/images/certifications/cyber-security.jpg"/></div><div class="cert-info"><div><div class="cert-platform">Simplilearn · SkillUP</div><div class="cert-name">Introduction to Cyber Security</div></div><div class="cert-date">April 2026</div></div></div>
+<div class="cert-card" onclick="openLightbox('lb-fullstack')"><div class="cert-preview"><img alt="Full-Stack" src="assets/images/certifications/full-stack.jpg"/></div><div class="cert-info"><div><div class="cert-platform">Simplilearn · SkillUP</div><div class="cert-name">Full-Stack Development 101</div></div><div class="cert-date">March 2025</div></div></div>
+<div class="cert-card" onclick="openLightbox('lb-sql')"><div class="cert-preview"><img alt="SQL" src="assets/images/certifications/sql.jpg"/></div><div class="cert-info"><div><div class="cert-platform">SkillRack</div><div class="cert-name">SQL – Basics (Standard)</div></div><div class="cert-date">October 2024</div></div></div>
+</div>
+</section>
+</div>
+<!-- HIGHLIGHTS -->
+<div id="highlights" style="background:var(--white);">
+<section>
+<div class="divider"></div>
+<div class="section-label">Recognition &amp; Activities</div>
+<h2 class="section-title">Highlights</h2>
+<div class="award-row">
+<div class="award-images">
+<img alt="KRISHNECS Trophy" src="assets/images/highlights/krishnecs-trophy.jpg"/>
+<img alt="Award Ceremony" src="assets/images/highlights/award-ceremony.jpg"/>
+</div>
+<div class="award-desc">
+<div class="award-badge">🏆 2nd Place — 1st Runner Up</div>
+<h4>Circuit Digest — KRISHNECS 2K24</h4>
+<p>Secured 2nd position (1st Runner Up) in the inter-college event 'Circuit Digest' held as a part of KRISHNECS 2K24 — A National Level Technical Symposium organised by the Department of ECE, Sri Krishna College of Engineering and Technology (SKCET).  ·  09 October 2024</p>
+</div>
+</div>
+<div class="workshops-label">Workshops &amp; Programs Attended</div>
+<div class="workshop-grid">
+<div class="workshop-card" onclick="openLightbox('lb-ws-smartphone')"><div class="workshop-preview"><img alt="Smartphone Workshop" src="assets/images/highlights/smartphone-workshop.jpg"/></div><div class="workshop-info"><div class="workshop-org">Sri Eshwar College of Engineering · New Technology Institutions</div><div class="workshop-name">Advanced Problem-Solving Techniques in Smart Phones</div><div class="workshop-date">2-Day Workshop  ·  Oct 7–8, 2024</div></div></div>
+<div class="workshop-card" onclick="openLightbox('lb-ws-ml')"><div class="workshop-preview"><img alt="ML Workshop" src="assets/images/highlights/ml-workshop.jpg"/></div><div class="workshop-info"><div class="workshop-org">Coimbatore Institute of Technology · CRYPTERA 2024</div><div class="workshop-name">Workshop on Machine Learning</div><div class="workshop-date">2-Day Workshop  ·  Mar 1–2, 2024</div></div></div>
+<div class="workshop-card" onclick="openLightbox('lb-ws-zed')"><div class="workshop-preview"><img alt="ZED Digital" src="assets/images/highlights/zed-digital.jpg"/></div><div class="workshop-info"><div class="workshop-org">ZED Digital · Sri Eshwar College of Engineering</div><div class="workshop-name">Quality Assurance Program</div><div class="workshop-date">Makerspace, SECE  ·  May 20, 2025</div></div></div>
+</div>
+</section>
+</div>
+<!-- LIGHTBOXES -->
+<div class="lightbox" id="lb-csio" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-csio'))">✕</button><img alt="CSIO" src="assets/images/internships/csio-certificate.jpg"/></div></div>
+<div class="lightbox" id="lb-udemy" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-udemy'))">✕</button><img alt="Udemy" src="assets/images/certifications/udemy-dsa.jpg"/></div></div>
+<div class="lightbox" id="lb-nptel" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-nptel'))">✕</button><img alt="NPTEL" src="assets/images/certifications/nptel.jpg"/></div></div>
+<div class="lightbox" id="lb-microchip" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-microchip'))">✕</button><img alt="Microchip" src="assets/images/certifications/microchip-freertos.jpg"/></div></div>
+<div class="lightbox" id="lb-cyber" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-cyber'))">✕</button><img alt="Cyber Security" src="assets/images/certifications/cyber-security.jpg"/></div></div>
+<div class="lightbox" id="lb-fullstack" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-fullstack'))">✕</button><img alt="Full-Stack" src="assets/images/certifications/full-stack.jpg"/></div></div>
+<div class="lightbox" id="lb-sql" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-sql'))">✕</button><img alt="SQL" src="assets/images/certifications/sql.jpg"/></div></div>
+<div class="lightbox" id="lb-ws-smartphone" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-ws-smartphone'))">✕</button><img alt="Smartphone Workshop" src="assets/images/highlights/smartphone-workshop.jpg"/></div></div>
+<div class="lightbox" id="lb-ws-ml" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-ws-ml'))">✕</button><img alt="ML Workshop" src="assets/images/highlights/ml-workshop.jpg"/></div></div>
+<div class="lightbox" id="lb-ws-zed" onclick="closeLightbox(this)"><div class="lightbox-inner"><button class="lightbox-close" onclick="event.stopPropagation();closeLightbox(document.getElementById('lb-ws-zed'))">✕</button><img alt="ZED Workshop" src="assets/images/highlights/zed-digital.jpg"/></div></div>
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+<div class="contact-inner">
+<div class="divider" style="background:var(--teal-light);margin:0 auto 16px;"></div>
+<div class="section-label">Get In Touch</div>
+<h2 class="section-title">Let's Connect</h2>
+<p>Open to research collaborations, academic opportunities, and internships in Embedded Systems, IoT, and AI/ML.</p>
+<div class="contact-links">
+<a class="contact-link" href="mailto:manjusri.s1605@gmail.com"><span>✉️</span> manjusri.s1605@gmail.com</a>
+<a class="contact-link" href="tel:+919042751605"><span>📞</span> +91 90427 51605</a>
+<a class="contact-link" href="https://www.linkedin.com/in/manju-sri-400556276/" rel="noopener" target="_blank"><svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>LinkedIn ↗</a>
+</div>
+</div>
+</div>
+<footer>© 2026 Manju Sri S  ·  Coimbatore, Tamil Nadu</footer>
+<script>
+  function toggleAbstract(id) {
+    const body = document.getElementById('abs-' + id);
+    const btn = document.getElementById('toggle-' + id);
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open'); btn.classList.toggle('open');
+    const svg = '<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>';
+    btn.innerHTML = svg + (isOpen ? ' Show Abstract' : ' Hide Abstract');
+  }
+  function openLightbox(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeLightbox(el) { el.classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') document.querySelectorAll('.lightbox.open').forEach(lb=>closeLightbox(lb)); });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';} });
+  },{threshold:0.06});
+  document.querySelectorAll('.skill-card,.cert-card,.edu-card,.timeline-item,.project-meta-card,.acc-badge,.graph-box,.hw-cell,.dash-cell,.pub-card,.workshop-card').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(20px)';
+    el.style.transition='opacity 0.6s ease,transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
